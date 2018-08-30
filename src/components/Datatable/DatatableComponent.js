@@ -18,8 +18,8 @@ export default {
   },  
   methods: {
   	getChars(){
-      console.log(this.offset)
-  	   let data = {
+      this.rows = [];
+  	  let data = {
         'apikey':'6b46e44334a56db24631af8033d776be',
         'ts':'1',
         'hash':'d916d187a1c11858352d75c90ca19823',
@@ -47,7 +47,6 @@ export default {
       });
   	},
     onPageChange(params) {
-      console.log(params)
       if(params.currentPage > params.prevPage){
         this.offset += this.limit;
       }
@@ -56,18 +55,12 @@ export default {
           this.offset -= this.limit;
         }
       }
-      this.rows = [];
       this.getChars();
-      //this.updateParams({page: params.currentPage});
-      //this.loadItems();
     },
 
     onPerPageChange(params) {
       this.limit = params.currentPerPage
-      this.rows = [];
       this.getChars();
-      //this.updateParams({perPage: params.currentPerPage});
-      //this.loadItems();
     },
 
     onSortChange(params) {
@@ -86,5 +79,5 @@ export default {
   },
   mounted(){
   	this.getChars();
-  }
+  },
 }
